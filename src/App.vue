@@ -1,12 +1,14 @@
 <script>
-import AppComponent from "./components/AppComponent.vue"
+import AppComponent from "./components/AppComponent.vue";
+import AppEventList from "./components/AppEventList.vue";
 
 import axios from 'axios'; //importo Axios
 import { store } from "./store.js" //state management
 
 export default {
 	components: {
-		AppComponent
+		AppComponent,
+		AppEventList,
 	},
 	data() {
 		return {
@@ -14,17 +16,24 @@ export default {
 		}
 	},
 	mounted() {
-		this.doThings();
-
-		// axios.get("indirizzo").then(risultato => {
-		// 	console.log(risultato);
-		// }).catch(errore => {
-		// 	console.error(errore);
-		// });
+		this.getEventList();
 	},
 	methods: {
-		doThings() {
-			console.log("App.vue does things");
+		getEventList() {
+
+			let url = this.store.apiUrl + this.store.apiEventEndpoint;
+
+			axios.get(url).then(risultato => {
+				if (risultato.status === 200 && risultato.data.success) {
+					console.log(risultato.data.payload);
+					this.store.eventList = risultato.data.payload;
+				} else {
+					console.error("Ops... qualcosa è andato storto");
+				}
+			}).catch(errore => {
+				console.error(errore);
+			});
+
 		}
 	}
 }
@@ -32,7 +41,7 @@ export default {
 
 <template>
 	<main>
-		<AppComponent />
+		<AppEventList />
 
 		<button class="btn btn-primary">
 			<font-awesome-icon icon="fa-solid fa-home" class="me-1" />
