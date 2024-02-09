@@ -13,11 +13,17 @@ export default {
                 <h5 class="card-title">{{ item.name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
                     {{ item.user ? item.user.name : "Utente sconosciuto" }}
+                    {{ item.tags ? item.tags.type : "Utente sconosciuto" }}
                 </h6>
                 <p class="card-text">Ci sono <b>{{ item.available_tickets }}</b> biglietti disponibili.
                 </p>
             </div>
-
+            <div class="card-footer text-center">
+                <router-link :to="{ name: 'event-show', params: { id: item.id } }" class="btn btn-primary">
+                    <font-awesome-icon icon="fa-solid fa-circle-info" class="me-2" />
+                    <span>Dettagli</span>
+                </router-link>
+            </div>
         </div>
     </div>
 </template>
