@@ -19,7 +19,7 @@ export default {
     methods: {
         getEventShow() {
 
-            let url = this.store.apiUrl + this.store.apiEventEndpoint;
+            let url = this.store.apiUrl + this.store.apiTagsEndpoint;
             console.log(url);
 
             axios.get(url).then(risultato => {
@@ -49,7 +49,7 @@ export default {
                 dicta
 
             </p>
-            <div v-for="tag in tagsList?.tags">
+            <div v-for="tag in store.tags">
                 <div class="text-white py-1">
                     <p>{{ tag.type }}</p>
                 </div>
