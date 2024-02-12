@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.vue';
 import About from './pages/About.vue';
 import EventList from './pages/EventList.vue';
 import EventShow from './pages/EventShow.vue';
+import TagsList from './pages/TagsList.vue';
 
 
 const router = createRouter({
@@ -29,6 +30,12 @@ const router = createRouter({
             path: '/eventi/:id',
             name: 'event-show',
             component: EventShow,
+            props: true
+        },
+        {
+            path: '/tags',
+            name: 'tags',
+            component: TagsList,
             props: true
         }
     ]

@@ -53,8 +53,10 @@ export default {
                         </h6>
                         <p class="card-text">Restano <b>{{ evento?.available_tickets }}</b> biglietti disponibili.
                         </p>
-                        <div class="card-subtitle mb-2 text-muted" v-for="tag in evento?.tags">
-                            {{ tag.type }}
+                        <div class="card-subtitle mb-2 text-muted badge bg-success me-2" v-for="tag in evento?.tags">
+                            <div class="text-white py-1">
+                                {{ tag.type }}
+                            </div>
                         </div>
                     </div>
                 </div>
