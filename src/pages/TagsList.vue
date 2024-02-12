@@ -6,6 +6,7 @@ export default {
 
     name: "TagsList",
 
+
     data() {
         return {
             store,
@@ -43,13 +44,8 @@ export default {
 <template>
     <div class="container">
         <div class="row">
-            <h1 class="mb-3">About Us</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, asperiores incidunt blanditiis perspiciatis
-                aliquid corporis architecto pariatur doloribus laudantium saepe reprehenderit mollitia fugit reiciendis
-                dicta
-
-            </p>
-            <div v-for="tag in tagsList.tags">
+            <h1 class="mb-3">Tag List</h1>
+            <div v-for="tag in tagsList">
                 <div class="text-white py-1">
                     <p>{{ tag.type }}</p>
                 </div>
