@@ -45,12 +45,17 @@ export default {
     <div class="container">
         <div class="row">
             <h1 class="mb-3">Tag List</h1>
-            <div v-for="tag in tagsList">
-                <div class="text-white py-1">
-                    <p>{{ tag.type }}</p>
-                </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Tags
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li v-for="tag in tagsList">
+                        <a class="dropdown-item" href="#">{{ tag.type }}</a>
+                    </li>
+                </ul>
             </div>
-
         </div>
     </div>
 </template>
