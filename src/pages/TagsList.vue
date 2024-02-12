@@ -49,7 +49,7 @@ export default {
                 dicta
 
             </p>
-            <div v-for="tag in store.tags">
+            <div v-for="tag in tagsList.tags">
                 <div class="text-white py-1">
                     <p>{{ tag.type }}</p>
                 </div>
