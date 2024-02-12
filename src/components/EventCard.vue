@@ -13,7 +13,6 @@ export default {
                 <h5 class="card-title">{{ item.name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
                     {{ item.user ? item.user.name : "Utente sconosciuto" }}
-                    {{ item.tags ? item.tags.type : "Utente sconosciuto" }}
                 </h6>
                 <p class="card-text">Ci sono <b>{{ item.available_tickets }}</b> biglietti disponibili.
                 </p>

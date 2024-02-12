@@ -1,16 +1,64 @@
 <script>
+import { store } from "../store.js" //state management
+import axios from 'axios'; //importo Axios
+
 export default {
     name: "EventShow",
-    props: ["id"]
+    props: ["id"],
+    data() {
+        return {
+            store,
+            evento: null
+        }
+    },
+    mounted() {
+
+        this.getEventShow();
+
+    },
+    methods: {
+        getEventShow() {
+
+            let url = this.store.apiUrl + this.store.apiEventEndpoint + this.id;
+            console.log(url);
+
+            axios.get(url).then(risultato => {
+                if (risultato.status === 200 && risultato.data.success) {
+                    console.log(risultato.data.payload);
+                    this.evento = risultato.data.payload;
+                } else {
+                    //ToDo: distinguere il motivo dell'else.
+                    //es. controllare statusCode, presenza e veridicità di data.success
+                    console.error("Ops... qualcosa è andato storto");
+                }
+            }).catch(errore => {
+                console.error(errore);
+            });
+        }
+    }
 }
 </script>
 
 <template>
     <div class="container">
         <div class="row">
-            <h1 class="mb-3">Dettaglio evento {{ this.id }}</h1>
-            <p>Da qui posso leggere solo l'id.</p>
-            <p>Oppure...</p>
+            <div class="col-md-12 gy-4">
+                <div v-if="!evento">Caricamento dati in corso</div>
+                <div class="card h-100" v-else>
+                    <div class="card-header">{{ evento?.date }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ evento?.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            {{ evento?.user ? evento?.user.name : "Utente sconosciuto" }}
+                        </h6>
+                        <p class="card-text">Restano <b>{{ evento?.available_tickets }}</b> biglietti disponibili.
+                        </p>
+                        <div class="card-subtitle mb-2 text-muted" v-for="tag in evento?.tags">
+                            {{ tag.type }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
